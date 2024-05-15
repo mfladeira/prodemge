@@ -1,28 +1,20 @@
 <template>
-    <form @submit.prevent="submit">
-        <label for="cep">Digite seu cep</label>
-        <input type="text" id="cep" v-model="form.cep" @focusout="getCep" />
-
-        <label for="street">Logradouro</label>
-        <input type="text" id="street" v-model="form.street" disabled />
-
-        <label for="state">Estado</label>
-        <input type="text" id="state" v-model="form.state" disabled />
-
-        <label for="neighborhood">Bairro</label>
-        <input type="text" id="neighborhood" v-model="form.neighborhood" disabled />
-
-        <label for="city">Cidade</label>
-        <input type="text" id="city" v-model="form.city" disabled />
-
-        <label for="type">Tipo de endereço</label>
-        <input type="text" id="type" v-model="form.type"  />
-        
-        <label for="number">Número</label>
-        <input type="text" id="number" v-model="form.number"  />
-
-        <button type="submit">Adicionar</button>
-    </form>
+    <v-card class="mx-auto mt-5" max-width="600" elevation="0">
+        <form @submit.prevent="submit">
+            <v-text-field v-model="form.cep" label="Cep" @focusout="getCep"></v-text-field>
+            <v-text-field v-model="form.street" label="Logradouro"></v-text-field>
+            <v-text-field v-model="form.state" label="Estado"></v-text-field>
+            <v-text-field v-model="form.neighborhood" label="Bairro"></v-text-field>
+            <v-text-field v-model="form.city" label="Cidade"></v-text-field>
+            <v-text-field v-model="form.type" label="Tipo de endereço"></v-text-field>
+            <v-text-field v-model="form.number" label="Número"></v-text-field>
+            <div class="text-center">
+                <v-btn class="mx-auto" variant="tonal" type="submit">
+                    Adicionar
+                </v-btn>
+            </div>
+        </form>
+    </v-card>
 </template>
 
 <script setup>
@@ -40,8 +32,9 @@ const form = useForm({
     number: "",
 });
 
-function getCep() {
-    axios.get('https://viacep.com.br/ws/25685080/json/').then(response => {
+function getCep(event) {
+    if(!event.target.value) return;
+    axios.get(`https://viacep.com.br/ws/${event.target.value}/json/`).then(response => {
         form.street = response.data.logradouro
         form.state = response.data.uf
         form.neighborhood = response.data.bairro
@@ -50,6 +43,6 @@ function getCep() {
 }
 
 const submit = () => {
-    form.post("/person");
+    // form.post("/address");
 };
 </script>

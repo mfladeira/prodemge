@@ -18,8 +18,12 @@ function filter(event) {
     <v-card class="mx-auto" max-width="1000">
         <v-list>
             <v-list-item v-for="(item, i) in people" :key="i" :value="item" color="primary">
-                <span class="mr-5" v-text="item.name"></span>
-                <span class="ml-5" v-text="item.email"></span>
+                <Link :href="`/show/${item.id}`">
+                    <div>
+                        <span class="mr-5" v-text="item.name"></span>
+                        <span class="ml-5" v-text="item.email"></span>
+                    </div>
+                </Link>    
             </v-list-item>
         </v-list>
 
