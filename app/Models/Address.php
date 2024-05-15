@@ -18,7 +18,12 @@ class Address extends Model
         'neighborhood',
         'state',
         'city',
+        'personId'
     ];
 
     protected $table = "addresses";
+
+    public function person(){
+        return $this->belongsTo('App\Person', 'personId');
+    }
 }

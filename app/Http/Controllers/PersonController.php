@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -27,5 +28,10 @@ class PersonController extends Controller
     public function create()
     {
         return Inertia::render('Person/Create');
+    }
+
+    public function show($id) {
+        $person = Person::where('id', $id)->first();
+        return Inertia::render('Person/Create', $person);
     }
 }

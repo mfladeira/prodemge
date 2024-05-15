@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PersonController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+
+Route::redirect('/', '/person');
 
 Route::get('/person', [PersonController::class, 'index']);
 Route::post('/person', [PersonController::class, 'store']);
 Route::get('/person/create', [PersonController::class, 'create']);
+
+Route::get('/address/create', [AddressController::class, 'create']);
+Route::get('/show/{id}', [PersonController::class, 'show']);
+
 
 require __DIR__.'/auth.php';

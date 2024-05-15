@@ -1,32 +1,20 @@
 <template>
-    <form @submit.prevent="submit">
-        <label for="name">Nome</label>
-        <input type="text" id="name" v-model="form.name" />
-
-        <label for="email">Email</label>
-        <input type="text" id="email" v-model="form.email" />
-
-        <label for="social_name">Nome social</label>
-        <input type="text" id="social_name" v-model="form.social_name" />
-
-        <label for="cpf">Cpf</label>
-        <input type="text" id="cpf" v-model="form.cpf" />
-
-        <label for="father_name">Nome do pai</label>
-        <input type="text" id="father_name" v-model="form.father_name" />
-
-        <label for="mother_name">Nome da mãe</label>
-        <input type="text" id="mother_name" v-model="form.mother_name" />
-
-        <label for="cellphone">Telefone</label>
-        <input type="text" id="cellphone" v-model="form.cellphone" />
-
-        <label for="password">Senha</label>
-        <input type="text" id="password" v-model="form.password" />
-
-        <button type="submit">Adicionar</button>
-
-    </form>
+    <v-card class="mx-auto mt-5"  max-width="600" elevation="0">
+        <v-card title="Criar nova pessoa" elevation="0"></v-card>
+        <form @submit.prevent="submit">
+            <v-text-field v-model="form.name" label="Nome"></v-text-field>
+            <v-text-field v-model="form.email" label="Email"></v-text-field>
+            <v-text-field v-model="form.social_name" label="Nome social"></v-text-field>
+            <v-text-field v-model="form.cpf" label="CPF"></v-text-field>
+            <v-text-field v-model="form.father_name" label="Nome do pai"></v-text-field>
+            <v-text-field v-model="form.mother_name" label="Nome da mãe"></v-text-field>
+            <v-text-field v-model="form.cellphone" label="Telefone"></v-text-field>
+            <v-text-field  v-model="form.password" label="Senha" type="password"></v-text-field>
+            <div class="text-center">
+                <v-btn class="mx-auto" variant="tonal" type="submit">Adicionar</v-btn>
+            </div>
+        </form>
+    </v-card class="mx-auto">
 </template>
 
 <script setup>

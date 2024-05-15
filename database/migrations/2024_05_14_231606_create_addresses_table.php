@@ -21,9 +21,14 @@ return new class extends Migration
             $table->string('neighborhood');
             $table->string('state');
             $table->string('city');
+            $table->string('personId');
 
             $table->timestamps();
         });
+
+        // Schema::table('addresses', function (Blueprint $table) {
+        //     $table->foreign('personId')->references('id')->on('person')->onDelete('cascade');
+        // });
     }
 
     /**
