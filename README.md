@@ -29,6 +29,13 @@ Setup configuration:
 cp .env.example .env
 ```
 
+Generate application key:
+
+```sh
+php artisan key:generate
+```
+
+
 ```sh
 Create an mySQL database. Update your configuration accordingly.
 ```
