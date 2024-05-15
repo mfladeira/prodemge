@@ -32,6 +32,6 @@ class PersonController extends Controller
 
     public function show($id) {
         $person = Person::where('id', $id)->first();
-        return Inertia::render('Person/Create', $person);
+        return Inertia::render('Person/Create', ['person' => $person]);
     }
 }

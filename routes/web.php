@@ -10,7 +10,8 @@ Route::get('/person', [PersonController::class, 'index']);
 Route::post('/person', [PersonController::class, 'store']);
 Route::get('/person/create', [PersonController::class, 'create']);
 
-Route::get('/address/create', [AddressController::class, 'create']);
+Route::get('/address/create/{id}', [AddressController::class, 'create']);
+Route::post('/address', [AddressController::class, 'create']);
 Route::get('/show/{id}', [PersonController::class, 'show']);
 
 
