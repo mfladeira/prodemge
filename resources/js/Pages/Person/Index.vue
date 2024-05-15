@@ -1,15 +1,35 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { ref } from 'vue'
 const props = defineProps({ people: Array });
-console.log(props)
+const people = ref(props.people);
+
+function filter(event) {
+    const searchLowerCase = event.target.value.toLowerCase();
+    const filteredPeople = props.people.filter(person => person.name.toLowerCase().startsWith(searchLowerCase));
+    people.value = filteredPeople;
+}
+
 </script>
 
 <template>
-    <h1>Welcome</h1>
-    <p v-for="person in props.people">
-        {{ person.name }}
-    </p>
+    <v-text-field max-width="1000" class="mx-auto mt-5" label="Digite o nome da pessoa" @input="filter"></v-text-field>
 
-    <Link href="person/create">Adicionar nova pessoa</Link>
+    <v-card class="mx-auto" max-width="1000">
+        <v-list>
+            <v-list-item v-for="(item, i) in people" :key="i" :value="item" color="primary">
+                <span class="mr-5" v-text="item.name"></span>
+                <span class="ml-5" v-text="item.email"></span>
+            </v-list-item>
+        </v-list>
+
+    </v-card>
+    <div class="d-flex mt-5">
+        <v-btn class="mx-auto" variant="tonal">
+            <Link href="person/create">
+            Adicionar nova pessoa
+            </Link>
+        </v-btn>
+    </div>
 
 </template>
